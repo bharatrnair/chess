@@ -1,38 +1,41 @@
-.App {
-  text-align: center;
+html,body,#root{
+  height: 100%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+#root{
+  display: grid;
+  place-items: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+
+.chess-board{
+  position: absolute;
+  inset: 0;
+    display: grid;
+    height: 100%;
+    grid-template-columns: repeat(8,1fr);
+}
+.App{
+ width: 100%;
+ max-width:  600px;
+ border: solid 5px #ccc;
+
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.chess-board-container{
+  width: 100%;
+  margin: auto;
+  height: 0px;
+  position: relative;
+  padding-top: 100%;
+
+}
+.chess-pawn{
+  background-position: center;
+  background-size: 30%;
+  background-repeat: no-repeat;
 }
 
-.App-link {
-  color: #61dafb;
-}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+
