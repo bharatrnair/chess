@@ -15,6 +15,8 @@ html,body,#root{
     display: grid;
     height: 100%;
     grid-template-columns: repeat(8,1fr);
+    grid-template-rows: repeat(8,1fr);
+
 }
 .App{
  width: 100%;

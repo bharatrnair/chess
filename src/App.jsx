@@ -12,6 +12,7 @@ import queenwhite  from './queenwhite.svg'
 import queenblack from './queenblack.svg'
 
 import './App.css';
+import { useState } from 'react';
 
 
 const initialState = [
@@ -78,17 +79,32 @@ const initialState = [
   },
 ]
 ]
-
-
-
 const App = () => {
+
+  const [chessState,setChessState] = useState(initialState);
+  const [activeColumn,setActiveColumn] = useState([null,null]);
+
+  const changePosition = (initialX,initialY,finalX,finalY) =>{
+
+    const newState = [...chessState];
+    let newPositionColumn = [...newState[finalX]];
+    newPositionColumn[finalY] = {icon: newState[initialX][initialY].icon};
+    newState[finalX]=newPositionColumn;
+
+    let newPositionColumn2 = [...newState[initialX]];
+    newPositionColumn2[initialY]={icon:null};
+    newState[initialX]=newPositionColumn2;
+    setChessState(newState);
+    setActiveColumn([null,null]);
+  }
+
   return ( 
   <div className="App">
     <div className="chess-board-container">
     <div className="chess-board">
-      {initialState.map((row, i) => row.map(({icon},j) => <div 
+      {chessState.map((row, i) => row.map(({icon},j) => <div 
     className='chess-pawn'
-     key={'${i}${j}'}
+     key={'${i}${j}'}   //check
      style={
          {
 
@@ -97,10 +113,19 @@ const App = () => {
          backgroundImage: `url(${icon})`,
          display: "grid",
          placeItems: "center",
+         border:activeColumn[0] === i && activeColumn[1] === j && "5px solid yellow",
          }
 
 
      }
+     onClick={()=>{
+       if(activeColumn[0] === null){
+         setActiveColumn([i,j]);
+       }else{
+         changePosition(activeColumn[0],activeColumn[1],i,j);
+       }
+      }}
+
      
      
      
